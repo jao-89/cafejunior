@@ -136,7 +136,7 @@ function enviarPedidoWhatsApp() {
   mensagem += `*TOTAL: R$ ${total.toFixed(2)}*\n\n`;
   mensagem += `_Pedido enviado via site Oficial Café Júnior (Carmo do Rio Claro - MG)_`;
 
-  const numeroWhatsApp = "5535999887766";
+  const numeroWhatsApp = "5535998932303";
   const url = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(mensagem)}`;
   
   window.open(url, '_blank');
