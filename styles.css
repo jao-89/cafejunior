@@ -19,10 +19,11 @@ body {
   color: #333;
 }
 
+/* Header Responsivo */
 header {
   background-color: var(--primary);
   color: var(--light);
-  padding: 1rem 2rem;
+  padding: 1rem 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -30,6 +31,8 @@ header {
   top: 0;
   z-index: 100;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .logo-container h1 {
@@ -43,10 +46,15 @@ header {
   opacity: 0.8;
 }
 
+nav {
+  width: auto;
+}
+
 nav ul {
   display: flex;
   list-style: none;
-  gap: 1.5rem;
+  gap: 1.2rem;
+  align-items: center;
 }
 
 nav a {
@@ -54,6 +62,11 @@ nav a {
   text-decoration: none;
   font-weight: 500;
   cursor: pointer;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: var(--accent);
 }
 
 .cart-icon {
@@ -61,6 +74,7 @@ nav a {
   background: var(--secondary);
   padding: 8px 15px;
   border-radius: 20px;
+  white-space: nowrap;
 }
 
 .cart-badge {
@@ -72,16 +86,27 @@ nav a {
   font-weight: bold;
 }
 
+/* Hero Section Responsiva */
 .hero {
   background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1200&q=80') center/cover;
   color: white;
   text-align: center;
-  padding: 4rem 1rem;
+  padding: 4rem 1.5rem;
 }
 
-.hero h2 { font-size: 2.2rem; margin-bottom: 10px; }
-.hero p { font-size: 1.1rem; max-width: 600px; margin: 0 auto; opacity: 0.9; }
+.hero h2 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
 
+.hero p {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  opacity: 0.9;
+}
+
+/* Container Principal */
 .container {
   max-width: 1100px;
   margin: 2rem auto;
@@ -97,10 +122,16 @@ nav a {
   padding-bottom: 5px;
 }
 
+#produtos {
+  text-align: center;
+}
+
+/* Grade de Produtos */
 .products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 2rem;
+  text-align: left;
 }
 
 .product-card {
@@ -195,6 +226,7 @@ nav a {
   cursor: pointer;
 }
 
+/* Modal Checkout */
 .modal {
   display: none;
   position: fixed;
@@ -203,14 +235,15 @@ nav a {
   z-index: 200;
   justify-content: center;
   align-items: center;
+  padding: 1rem;
 }
 
 .modal-content {
   background: white;
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 8px;
   max-width: 500px;
-  width: 90%;
+  width: 100%;
   max-height: 90vh;
   overflow-y: auto;
 }
@@ -245,17 +278,19 @@ nav a {
   border-radius: 4px;
 }
 
+/* Painel Admin */
 .admin-panel {
   display: none;
   background: white;
   padding: 1.5rem;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow-x: auto;
 }
 
 .dashboard-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
   margin-bottom: 1.5rem;
 }
@@ -270,9 +305,12 @@ nav a {
 .dash-card h4 { font-size: 0.8rem; color: #666; }
 .dash-card p { font-size: 1.4rem; font-weight: bold; color: var(--primary); }
 
+/* Banner LGPD */
 .lgpd-banner {
   position: fixed;
-  bottom: 0; width: 100%;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   background: #333;
   color: white;
   padding: 1rem;
@@ -283,14 +321,16 @@ nav a {
   justify-content: center;
   align-items: center;
   gap: 15px;
+  flex-wrap: wrap;
 }
 
 .lgpd-banner button {
   background: var(--accent);
   border: none;
-  padding: 5px 15px;
+  padding: 6px 16px;
   border-radius: 4px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 footer {
@@ -300,4 +340,66 @@ footer {
   padding: 1.5rem;
   margin-top: 3rem;
   font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   MEDIA QUERIES (RESPONSIVIDADE DISPOSITIVOS MÓVEIS E TABLETS)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+    padding: 0.8rem 1rem;
+  }
+
+  nav {
+    width: 100%;
+  }
+
+  nav ul {
+    justify-content: center;
+    gap: 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .hero {
+    padding: 2.5rem 1rem;
+  }
+
+  .hero h2 {
+    font-size: 1.75rem;
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+  }
+
+  .dashboard-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .lgpd-banner {
+    flex-direction: column;
+    padding: 0.8rem 1rem;
+    gap: 8px;
+  }
+
+  .modal-content {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+  }
+
+  .cart-icon {
+    padding: 6px 12px;
+  }
 }
