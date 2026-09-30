@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Café Júnior - Carmo do Rio Claro MG</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header>
+    <div class="logo-container">
+      <h1>Café Júnior</h1>
+      <p>Carmo do Rio Claro - MG</p>
+    </div>
+    <nav>
+      <ul>
+        <li><a onclick="window.scrollTo(0,0)">Início</a></li>
+        <li><a onclick="document.getElementById('produtos').scrollIntoView()">Produtos</a></li>
+        <li><a onclick="toggleAdmin()">Painel Produtor</a></li>
+        <li>
+          <div class="cart-icon" onclick="abrirCarrinho()" style="cursor:pointer;">
+            🛒 Carrinho <span class="cart-badge" id="cartCount">0</span>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>O Autêntico Café do Tio Júnior</h2>
+    <p>Produzido com cuidado e carinho nas serras de Carmo do Rio Claro - MG. Direto da lavoura para a sua xícara, em grão ou moído.</p>
+  </section>
+
+  <main class="container">
+    <div id="produtos">
+      <h2 class="section-title">Nossos Cafés</h2>
+      <div class="products-grid" id="productsContainer">
+        <!-- Produtos injetados via JavaScript -->
+      </div>
+    </div>
+
+    <!-- Painel do Produtor (Dashboard MVP) -->
+    <div class="admin-panel" id="adminPanel" style="margin-top: 3rem;">
+      <h2 class="section-title">Painel Administrativo do Produtor</h2>
+      
+      <div class="dashboard-cards">
+        <div class="dash-card">
+          <h4>Vendas do Mês</h4>
+          <p>R$0</p>
+        </div>
+        <div class="dash-card">
+          <h4>Pedidos Realizados</h4>
+          <p>38</p>
+        </div>
+        <div class="dash-card">
+          <h4>Estoque Total</h4>
+          <p>125 Unid.</p>
+        </div>
+      </div>
+
+      <h3>Controle Rápido de Estoque</h3>
+      <table style="width:100%; border-collapse: collapse; margin-top: 10px;">
+        <tr style="background:#eee; text-align:left;">
+          <th style="padding:8px;">Produto</th>
+          <th style="padding:8px;">Preço</th>
+          <th style="padding:8px;">Estoque</th>
+        </tr>
+        <tr>
+          <td style="padding:8px;">Café Júnior Gourmet</td>
+          <td style="padding:8px;">R$ 32,00</td>
+          <td style="padding:8px;">45 un</td>
+        </tr>
+        <tr>
+          <td style="padding:8px;">Café Júnior Tradicional</td>
+          <td style="padding:8px;">R$ 26,00</td>
+          <td style="padding:8px;">60 un</td>
+        </tr>
+      </table>
+    </div>
+  </main>
+
+  <!-- Modal do Carrinho / Checkout -->
+  <div class="modal" id="cartModal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="fecharCarrinho()">&times;</span>
+      <h3>Seu Carrinho</h3>
+      <div id="cartItems" style="margin: 1rem 0;"></div>
+      <p style="text-align:right; font-size:1.2rem; font-weight:bold;">Total: R$ <span id="cartTotal">0.00</span></p>
+
+      <hr style="margin: 1rem 0;">
+
+      <h4>Dados para Entrega</h4>
+      <div class="form-group">
+        <label>Seu Nome Completo *</label>
+        <input type="text" id="clienteNome" placeholder="Ex: Maria Silva">
+      </div>
+      <div class="form-group">
+        <label>Telefone / WhatsApp *</label>
+        <input type="text" id="clienteTel" placeholder="(35) 99999-8888">
+      </div>
+      <div class="form-group">
+        <label>Tipo de Entrega</label>
+        <select id="tipoEntrega">
+          <option value="ENTREGA">Entrega em Carmo do Rio Claro</option>
+          <option value="RETIRADA">Retirar na Fazenda/Produtor</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Endereço Completo</label>
+        <input type="text" id="clienteEndereco" placeholder="Rua, Número, Bairro">
+      </div>
+      <div class="form-group">
+        <label>Forma de Pagamento</label>
+        <select id="formaPagamento">
+          <option value="PIX">PIX</option>
+          <option value="DINHEIRO">Dinheiro na Entrega</option>
+          <option value="CARTAO">Cartão de Crédito/Débito</option>
+        </select>
+      </div>
+
+      <button class="btn-whatsapp" onclick="enviarPedidoWhatsApp()">
+        📲 Finalizar Pedido pelo WhatsApp
+      </button>
+    </div>
+  </div>
+
+  <!-- Aviso de Privacidade / LGPD -->
+  <div class="lgpd-banner" id="lgpdBanner">
+    <span>Respeitamos a LGPD! Utilize nosso site sabendo que seus dados serão utilizados exclusivamente para a realização e entrega dos seus pedidos de café.</span>
+    <button onclick="fecharLGPD()">Entendi e Aceito</button>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Café Júnior - Carmo do Rio Claro MG. Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
